@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toko Sarung Bang Doel - Sarung Asli Bandung</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=DM+Serif+Display&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: #000000;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-family: 'DM Serif Display', serif;
+            position: relative;
+        }
+        
+        .cart-icon {
+            position: absolute;
+            top: 50%;
+            right: 1rem;
+            transform: translateY(-50%);
+            background: #eeff00;
+            color: rgb(0, 0, 0);
+            padding: 0.5rem;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: absolute;
+            z-index: 10;
+        }
+        
+        .cart-icon:hover {
+            background-color: #0000ff;
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff0000;
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        nav {
+            background-color: #292929;
+            padding: 0.8rem;
+            font-family: 'Poppins', sans-serif;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            margin: 0 1.5rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 1px;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: #000dff;
+            transform: translateY(-2px);
+        }
+        
+        main {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0000ff 0%, #000000 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+        }
+        
+        .hero h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            border: none;
+            color: white;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* Section Styling */
+        section {
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            color: #000000;
+            border-bottom: 3px solid #0000ff;
+            padding-bottom: 0.5rem;
+            font-family: 'DM Serif Display', serif;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            justify-items: center;
+        }
+        
+        .product {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            width: 100%;
+            max-width: 320px;
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+        
+        .product:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .product img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .product:hover img {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+        }
+        
+        .product h3 {
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.3rem;
+        }
+        
+        .product p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        
+        .price {
+            font-weight: bold;
+            color: #fc0000;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .buy-btn {
+            background: linear-gradient(45deg, #0000ff, #000000);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            width: 100%;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .buy-btn:hover {
+            background: linear-gradient(45deg, #ef0000, #f50000);
+            transform: translateY(-2px);
+        }
+        
+        /* Categories Section */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .category {
+            background: linear-gradient(135deg, #0000ff, #000000);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        
+        .category:hover {
+            transform: translateY(-5px);
+            color: white;
+        }
+        
+        .category h3 {
+            font-family: 'DM Serif Display', serif;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* About Section */
+        .about {
+            background-color: #f8f9fa;
+            padding: 3rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .about h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .about p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h4 {
+            font-family: 'DM Serif Display', serif;
+            margin-bottom: 1rem;
+            color: #3498db;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            line-height: 1.6;
+        }
+        
+        .footer-section a:hover {
+            color: #3498db;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .close {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            color: #aaa;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close:hover {
+            color: #000;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        
+        .cart-item-info {
+            flex: 1;
+        }
+        
+        .cart-item-title {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .cart-item-price {
+            color: #fc0000;
+            font-weight: bold;
+        }
+        
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .quantity-btn {
+            background: #0000ff;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .quantity-btn:hover {
+            background: #000000;
+            transform: scale(1.1);
+        }
+        
+        .quantity {
+            min-width: 40px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .remove-btn {
+            background: #ff0000;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+        
+        .remove-btn:hover {
+            background: #cc0000;
+            transform: translateY(-2px);
+        }
+        
+        .cart-total {
+            text-align: center;
+            margin: 2rem 0;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(45deg, #27ae60, #2ecc71);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .checkout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(46, 204, 113, 0.3);
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+        
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: #27ae60;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            z-index: 1001;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .cart-icon {
+                right: 0.5rem;
+                width: 45px;
+                height: 45px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav li {
+                margin: 0.2rem 0;
+            }
+            
+            main {
+                padding: 1rem;
+            }
+            
+            .hero {
+                padding: 2rem 1rem;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .products {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .categories {
+                grid-template-columns: 1fr;
+            }
+            
+            .about {
+                padding: 2rem 1rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+                padding: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            header {
+                padding: 0.5rem;
+            }
+            
+            .cart-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+                right: 0.5rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .product-info {
+                padding: 1rem;
+            }
+            
+            .about {
+                padding: 1.5rem 1rem;
+            }
+            
+            .about h3 {
+                font-size: 1.5rem;
+            }
+        }
+        
+        /* Tablet Responsive */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .cart-icon {
+                right: 1.5rem;
+            }
+        }
+        
+        /* Desktop Large */
+        @media (min-width: 1200px) {
+            .products {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .categories {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .cart-icon {
+                right: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Toko Sarung Bang Doel</h1>
+        <div class="cart-icon" onclick="toggleCart()">
+            🛒
+            <span class="cart-count" id="cartCount">0</span>
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#beranda">Beranda</a></li>
+            <li><a href="#produk">Produk</a></li>
+            <li><a href="#kategori">Kategori</a></li>
+            <li><a href="#tentang">Tentang Kami</a></li>
+            <li><a href="#kontak">Kontak</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <section id="beranda" class="hero">
+            <h2>Selamat Datang di Toko Sarung Bang Doel</h2>
+            <p>Koleksi sarung tradisional dan modern terbaik dari Bandung dengan kualitas premium dan harga terjangkau</p>
+        </section>
+        
+        <section id="kategori">
+            <h2 class="section-title">Kategori Produk</h2>
+            <div class="categories">
+                <a href="#" class="category">
+                    <h3>Sarung Batik</h3>
+                    <p>Motif tradisional dan modern</p>
+                </a>
+                <a href="#" class="category">
+                    <h3>Sarung Tenun</h3>
+                    <p>Tenun ikat berkualitas tinggi</p>
+                </a>
+                <a href="#" class="category">
+                    <h3>Sarung Songket</h3>
+                    <p>Mewah dengan benang emas</p>
+                </a>
+                <a href="#" class="category">
+                    <h3>Sarung Modern</h3>
+                    <p>Desain kontemporer</p>
+                </a>
+            </div>
+        </section>
+        
+        <section id="produk">
+            <h2 class="section-title">Produk Terbaru</h2>
+            <div class="products">
+                <article class="product">
+                    <img src="Wayang.jpg" alt="Sarung Batik Tradisional">
+                    <div class="product-info">
+                        <h3>Sarung Batik Tradisional Bandung</h3>
+                        <p>Sarung batik dengan motif tradisional dan motif wayang, dibuat dengan teknik canting tulis asli Bandung. Bahan katun premium yang nyaman dan tahan lama.</p>
+                        <div class="price">Rp 350.000</div>
+                        <button class="buy-btn" onclick="addToCart(1, 'Sarung Batik Tradisional Bandung', 350000)">Beli Sekarang</button>
+                    </div>
+                </article>
+                
+                <article class="product">
+                    <img src="Modern.jpg" alt="Sarung Tenun Ikat">
+                    <div class="product-info">
+                        <h3>Sarung Tenun Ikat Bandung</h3>
+                        <p>Sarung tenun khas Nusa Tenggara, ditenun manual dengan benang katun pilihan terbaik. Motif etnik yang memukau dan bernilai seni tinggi.</p>
+                        <div class="price">Rp 450.000</div>
+                        <button class="buy-btn" onclick="addToCart(2, 'Sarung Tenun Ikat Bandung', 450000)">Beli Sekarang</button>
+                    </div>
+                </article>
+                
+                <article class="product">
+                    <img src="Songket.jpg" alt="Sarung Songket Mewah">
+                    <div class="product-info">
+                        <h3>Sarung Songket Bandung</h3>
+                        <p>Sarung songket mewah dengan benang emas asli, cocok untuk acara resmi dan pernikahan. Keanggunan tradisional yang tak lekang waktu.</p>
+                        <div class="price">Rp 1.250.000</div>
+                        <button class="buy-btn" onclick="addToCart(3, 'Sarung Songket Bandung', 1250000)">Beli Sekarang</button>
+                    </div>
+                </article>
+                
+                <article class="product">
+                    <img src="Tenun Batik.jpg" alt="Sarung Batik Modern Bandung">
+                    <div class="product-info">
+                        <h3>Sarung Batik Modern</h3>
+                        <p>Sarung batik dengan motif kontemporer, nyaman dipakai sehari-hari. Perpaduan sempurna antara tradisi dan modernitas.</p>
+                        <div class="price">Rp 180.000</div>
+                        <button class="buy-btn" onclick="addToCart(4, 'Sarung Batik Modern', 180000)">Beli Sekarang</button>
+                    </div>
+                </article>
+                
+                <article class="product">
+                    <img src="Sutra.jpeg" alt="Sarung Sutera Premium Bandung">
+                    <div class="product-info">
+                        <h3>Sarung Sutera Premium</h3>
+                        <p>Sarung berbahan sutera halus dengan motif eksklusif. Kemewahan dan kenyamanan dalam satu produk berkualitas tinggi.</p>
+                        <div class="price">Rp 750.000</div>
+                        <button class="buy-btn" onclick="addToCart(5, 'Sarung Sutera Premium', 750000)">Beli Sekarang</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+        
+        <section id="tentang" class="about">
+            <h3>Tentang Kami</h3>
+            <p>Toko Sarung Bang Doel telah berdiri sejak 2000 dan menjadi toko sarung terpercaya di Bandung. Kami menyediakan berbagai jenis sarung berkualitas tinggi dari berbagai daerah di Indonesia. Dengan pengalaman lebih dari 25 tahun, kami berkomitmen memberikan produk terbaik dengan harga yang kompetitif untuk semua kalangan.</p>
+        </section>
+    </main>
+    
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCart()">&times;</span>
+            <h2>Keranjang Belanja</h2>
+            <div id="cartItems"></div>
+            <div class="cart-total" id="cartTotal">Total: Rp 0</div>
+            <button class="checkout-btn" onclick="checkout()">Checkout</button>
+        </div>
+    </div>
+    
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+    
+    <footer id="kontak">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Kontak Kami</h4>
+                <p>📍 Jl. H. Djuanda Kec. Cicalengka Kab. Bandung<br>
+                📞 (089) 5364530205<br>
+                📧 info@sarungbangdoel.com</p>
+            </div>
+            <div class="footer-section">
+                <h4>Jam Operasional</h4>
+                <p>Senin - Sabtu: 08:00 - 16:00<br>
+                Minggu: 10:00 - 16:00</p>
+            </div>
+            <div class="footer-section">
+                <h4>Media Sosial</h4>
+                <p>
+                    <a href="#">Facebook tokosarungbangdoel</a><br>
+                    <a href="#">Instagram tokosarungbangdoel</a><br>
+                    <a href="#">WhatsApp (0895364530205)</a>
+                </p>
+            </div>
+        </div>
+        <hr style="margin: 2rem 0; border: 1px solid #34495e;">
+        <p>&copy; 2025 Toko Sarung Bang Doel. Seluruh hak cipta dilindungi.</p>
+    </footer>
+
+    <script>
+        // Shopping Cart Functionality
+        let cart = [];
+        let cartCount = 0;
+
+        function addToCart(id, name, price) {
+            const existingItem = cart.find(item => item.id === id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: id,
+                    name: name,
+                    price: price,
+                    quantity: 1
+                });
+            }
+            
+            cartCount++;
+            updateCartDisplay();
+            showNotification(`${name} ditambahkan ke keranjang!`);
+        }
+
+        function removeFromCart(id) {
+            const itemIndex = cart.findIndex(item => item.id === id);
+            if (itemIndex !== -1) {
+                cartCount -= cart[itemIndex].quantity;
+                cart.splice(itemIndex, 1);
+                updateCartDisplay();
+                showNotification('Produk dihapus dari keranjang');
+            }
+        }
+
+        function updateQuantity(id, change) {
+            const item = cart.find(item => item.id === id);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(id);
+                } else {
+                    cartCount += change;
+                    updateCartDisplay();
+                }
+            }
+        }
+
+        function updateCartDisplay() {
+            document.getElementById('cartCount').textContent = cartCount;
+            
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="empty-cart">Keranjang belanja kosong</div>';
+                cartTotal.textContent = 'Total: Rp 0';
+            } else {
+                let total = 0;
+                cartItems.innerHTML = cart.map(item => {
+                    const itemTotal = item.price * item.quantity;
+                    total += itemTotal;
+                    return `
+                        <div class="cart-item">
+                            <div class="cart-item-info">
+                                <div class="cart-item-title">${item.name}</div>
+                                <div class="cart-item-price">Rp ${item.price.toLocaleString()}</div>
+                            </div>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+                                <span class="quantity">${item.quantity}</span>
+                                <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                            </div>
+                            <button class="remove-btn" onclick="removeFromCart(${item.id})">Hapus</button>
+                        </div>
+                    `;
+                }).join('');
+                cartTotal.textContent = `Total: Rp ${total.toLocaleString()}`;
+            }
+        }
+
+        function toggleCart() {
+            document.getElementById('cartModal').style.display = 'block';
+        }
+
+        function closeCart() {
+            document.getElementById('cartModal').style.display = 'none';
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Keranjang belanja kosong!');
+                return;
+            }
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const message = `Halo, saya ingin memesan:\n\n${cart.map(item => `${item.name} x${item.quantity} = Rp ${(item.price * item.quantity).toLocaleString()}`).join('\n')}\n\nTotal: Rp ${total.toLocaleString()}`;
+            
+            const whatsappUrl = `https://wa.me/6289536453025?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
